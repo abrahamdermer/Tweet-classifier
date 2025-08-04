@@ -1,15 +1,9 @@
 from src.manager import Manager
 import pandas as pd
 
-add = "data/tweets_dataset.csv"
+address = "data/tweets_dataset.csv"
 
-manager = Manager(add)
+manager = Manager(address)
 manager.reade()
-# manager.printHead()
-# manager.printTypes()
-# manager.cuntBycat()
-# manager.meanBycat()
-# manager.big()
 manager.analyse()
-print(manager.analyzed)
-manager.tojson()
+manager.writeToJson()
