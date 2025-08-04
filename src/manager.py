@@ -1,4 +1,4 @@
-
+from .functions.dataReader import CreateDataFrame
 
 class Manager:
     def __init__(self,add):
@@ -6,4 +6,7 @@ class Manager:
         self.data = None
 
     def reade(self):
-        pass
+        self.data = CreateDataFrame.creat_df_from_adrrres(self.add)
+
+    def printer(self):
+        print(self.data.head())
