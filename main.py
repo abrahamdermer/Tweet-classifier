@@ -5,5 +5,6 @@ add = "data/tweets_dataset.csv"
 
 manager = Manager(add)
 manager.reade()
-manager.printer()
-# print(pd.read_csv(add))
+# manager.printHead()
+# manager.printTypes()
+print(manager.data["Biased"].isnull().sum())
