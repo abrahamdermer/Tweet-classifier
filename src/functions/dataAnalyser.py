@@ -2,6 +2,21 @@ import pandas as pd
 
 class Analyser:
 
+
+
+    @staticmethod
+    def analyzer(df:pd.DataFrame,)->dict:
+        newdf = df.copy()
+        newdf["wcount"] = newdf["Text"].str.count(' ')+1
+        newdf["len"] = newdf["Text"].str.len()
+        dic = {"count by categorie": Analyser.numForCat(newdf),
+               "mean len by categorie":Analyser.meanLenByCategories(newdf),
+               "the longest by categorie":Analyser.biggests(newdf),
+               "the words in capital letters by categorie":{"Biased":None,"not Biased":None,"Unclassified":None},
+               }
+        return dic
+
+
     @staticmethod
     def numForCat(df:pd.DataFrame,)->dict:
         dic = dict()
@@ -14,11 +29,9 @@ class Analyser:
     @staticmethod
     def meanLenByCategories(df:pd.DataFrame,)->dict:
         dic = dict()
-        newdf = df.copy()
-        newdf["WC"] = newdf["Text"].str.count(' ')+1
-        dic["Biased"] = int(newdf[newdf["Biased"]==1]["WC"].mean())
-        dic["Not Biased"] = int(newdf[newdf["Biased"]==0]["WC"].mean())
-        dic["Null"] = int(newdf["WC"].mean())
+        dic["Biased"] = int(df[df["Biased"]==1]["wcount"].mean())
+        dic["Not Biased"] = int(df[df["Biased"]==0]["wcount"].mean())
+        dic["Null"] = int(df["wcount"].mean())
         # print(newdf.head())
 
         return dic
@@ -26,13 +39,9 @@ class Analyser:
 
     def biggests(df:pd.DataFrame,)->dict:
         dic = dict()
-        newdf = df.copy()
-        newdf["len"] = newdf["Text"].str.len()
-        # aa= newdf.sort_values(["Biased","len"]).tail()
-        # print(aa["len"])
-        dic["Biased"] = list(newdf[newdf["Biased"]==1]["len"].sort_values()[-3:])
-        dic["Not Biased"] = list(newdf[newdf["Biased"] == 0]["len"].sort_values()[-3:])
-        dic["Null"] = list(newdf["len"].sort_values()[-3:])
+        dic["Biased"] = list(df[df["Biased"]==1]["len"].sort_values()[-3:])
+        dic["Not Biased"] = list(df[df["Biased"] == 0]["len"].sort_values()[-3:])
+        dic["Null"] = list(df["len"].sort_values()[-3:])
         # print(newdf.head())
 
         return dic
