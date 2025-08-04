@@ -14,6 +14,12 @@ class Manager:
 
     def printTypes(self):
         print(self.data.dtypes)
-        
+
     def cuntBycat(self):
         print(Analyser.numForCat(self.data))
+
+    def meanBycat(self):
+        print(Analyser.meanLenByCategories(self.data))
+
+    def big(self):
+        print(Analyser.biggests(self.data))

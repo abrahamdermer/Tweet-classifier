@@ -5,6 +5,8 @@ add = "data/tweets_dataset.csv"
 
 manager = Manager(add)
 manager.reade()
-manager.printHead()
-manager.printTypes()
-manager.cuntBycat()
+# manager.printHead()
+# manager.printTypes()
+# manager.cuntBycat()
+# manager.meanBycat()
+manager.big()
