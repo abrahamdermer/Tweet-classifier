@@ -1,5 +1,6 @@
 from .functions.dataReader import CreateDataFrame
 from .functions.dataAnalyser import Analyser
+from .functions.writer import Writer
 
 class Manager:
     def __init__(self,add):
@@ -18,3 +19,6 @@ class Manager:
 
     def analyse(self):
         self.analyzed = Analyser.analyzer(self.data)
+
+    def tojson(self):
+        Writer.writer(self.analyzed)
